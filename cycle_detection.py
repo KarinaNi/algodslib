@@ -1,13 +1,13 @@
 def cycle_detection(graph):
     visited = set()
     visiting = set()
-    def dfs(node, visited, visiting):
+    def dfs(node):
         if node in visiting:
             return True 
         visiting.add(node)
         for nei in graph[node]:
             if nei not in visited:
-                if dfs(nei, visited, visiting):
+                if dfs(nei):
                     return True 
         visiting.remove(node)
         visited.add(node)
@@ -15,7 +15,7 @@ def cycle_detection(graph):
     
     for node in graph:
         if node not in visited:
-            if dfs(node, visited, visiting):
+            if dfs(node):
                 return True 
     
     return False
